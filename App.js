@@ -32,7 +32,12 @@ export default class App extends React.Component {
     )
       .then(res => res.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
+        this.setState({
+          temperature: json.main.temp,
+          weatherCondition: json.weather[0].main,
+          isLoading: false
+        });
       });
   }
 

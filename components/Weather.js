@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Stylesheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Weather = () => {
   return (
@@ -10,12 +10,16 @@ const Weather = () => {
   );
 };
 
-const styles = StyleSheet({
+const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  headerContainer: {},
-  bodyContainer: {}
+  headerContainer: {
+    flex: 1
+  },
+  bodyContainer: {
+    flex: 1
+  }
 });
 
 export default Weather;
