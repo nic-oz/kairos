@@ -10,7 +10,9 @@ export default class App extends React.Component {
     const { isLoading } = this.state;
     return (
       <View style={styles.container}>
-        {isLoading ? null : (
+        {isLoading ? (
+          <Text> Fetching Weather Info...</Text>
+        ) : (
           <View>
             <Text>Kairos Weather App</Text>
           </View>
