@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
-
+import { StyleSheet, Text, View } from 'react-native';
 import { DangerZone } from 'expo';
 const { Lottie } = DangerZone;
 
@@ -12,6 +11,8 @@ export default class App extends React.Component {
   state = {
     isLoading: true,
     temperature: 0,
+    city: null,
+    country: null,
     weatherCondition: null,
     error: null
   };
@@ -38,13 +39,21 @@ export default class App extends React.Component {
         this.setState({
           temperature: json.main.temp,
           weatherCondition: json.weather[0].main,
+          city: json.name,
+          country: json.sys.country,
           isLoading: false
         });
       });
   }
 
   render() {
-    const { isLoading, weatherCondition, temperature } = this.state;
+    const {
+      isLoading,
+      weatherCondition,
+      temperature,
+      city,
+      country
+    } = this.state;
     return (
       <View style={styles.container}>
         {isLoading ? (
@@ -52,7 +61,12 @@ export default class App extends React.Component {
             <Text style={styles.loadingText}>Fetching Weather Info...</Text>
           </View>
         ) : (
-          <Weather weather={weatherCondition} temperature={temperature} />
+          <Weather
+            weather={weatherCondition}
+            temperature={temperature}
+            city={city}
+            country={country}
+          />
         )}
       </View>
     );

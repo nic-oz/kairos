@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { weatherConditions } from '../utils/WeatherConditions';
 
-const Weather = ({ weather, temperature }) => {
+const Weather = ({ weather, temperature, city, country }) => {
   return (
     <View
       style={[
@@ -21,7 +21,9 @@ const Weather = ({ weather, temperature }) => {
         />
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.title}>{weatherConditions[weather].title}</Text>
+        <Text style={styles.title}>
+          {city}, {country}
+        </Text>
         <Text style={styles.subtitle}>
           {weatherConditions[weather].subtitle}
         </Text>
@@ -32,7 +34,9 @@ const Weather = ({ weather, temperature }) => {
 
 Weather.propTypes = {
   temperature: PropTypes.number.isRequired,
-  weather: PropTypes.string
+  weather: PropTypes.string,
+  city: PropTypes.string,
+  country: PropTypes.string
 };
 
 const styles = StyleSheet.create({
@@ -57,11 +61,11 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   title: {
-    fontSize: 60,
+    fontSize: 40,
     color: '#fff'
   },
   subtitle: {
-    fontSize: 24,
+    fontSize: 20,
     color: '#fff'
   }
 });
